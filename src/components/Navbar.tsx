@@ -123,16 +123,16 @@ const Navbar = () => {
                   transition={{ delay: index * 0.1 }}
                 >
                   <Link
-                    to={item.path}
-                    className={`block px-3 py-2 rounded-md text-base font-medium
-                      ${pathname === item.path
-                        ? 'bg-accent text-accent-foreground'
-                        : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
-                      }`}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
+                  to={item.path}
+                  className={`block px-3 py-2 rounded-md text-base font-medium
+                    ${pathname === item.path
+                      ? 'bg-accent text-accent-foreground'
+                      : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+                    }`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
                 </motion.div>
               ))}
             </div>
