@@ -1,0 +1,17 @@
+.env
+*.env
+.env.*
+**/apiKey*
+**/api_key*
+**/apikey*
+**/apikeys*
+**/api-keys*
+**/api_keys*
+**/secret*
+**/secrets*
+**/token*
+**/tokens*
+**/password*
+**/passwords*
+**/credential*
+**/credentials* 
