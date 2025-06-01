@@ -31,28 +31,28 @@ const AnimatedRoutes = () => {
         } />
         <Route path="/about" element={
           <PageTransition>
-            <div className="pt-20">
+            <div className="pt-20 min-h-screen">
               <About />
             </div>
           </PageTransition>
         } />
         <Route path="/projects" element={
           <PageTransition>
-            <div className="pt-20">
+            <div className="pt-20 min-h-screen">
               <Projects />
             </div>
           </PageTransition>
         } />
         <Route path="/ai" element={
           <PageTransition>
-            <div className="pt-20">
+            <div className="pt-20 min-h-screen">
               <Chatbot />
             </div>
           </PageTransition>
         } />
         <Route path="/contact" element={
           <PageTransition>
-            <div className="pt-20">
+            <div className="pt-20 min-h-screen">
               <Contact />
             </div>
           </PageTransition>

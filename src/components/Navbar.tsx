@@ -67,15 +67,19 @@ const Navbar = () => {
                   to={item.path}
                   className={`relative px-3 py-2 text-sm font-medium transition-colors
                     ${pathname === item.path 
-                      ? 'text-primary' 
+                      ? 'text-primary font-semibold' 
                       : 'text-muted-foreground hover:text-foreground'
                     }`}
+                  onClick={() => {
+                    // Scroll to top when navigating
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
                 >
                   {item.label}
                   {pathname === item.path && (
                     <motion.div
                       layoutId="navbar-indicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -124,12 +128,16 @@ const Navbar = () => {
                 >
                   <Link
                   to={item.path}
-                  className={`block px-3 py-2 rounded-md text-base font-medium
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors
                     ${pathname === item.path
-                      ? 'bg-accent text-accent-foreground'
-                      : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+                      ? 'bg-primary/10 text-primary font-semibold'
+                      : 'text-muted-foreground hover:bg-accent hover:text-foreground'
                     }`}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => {
+                    setMenuOpen(false);
+                    // Scroll to top when navigating
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
                 >
                   {item.label}
                 </Link>

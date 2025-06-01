@@ -148,10 +148,10 @@ export function Hero() {
         >
           <Button 
             size="lg" 
-            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:scale-105"
             asChild
           >
-            <a href="mailto:your.email@example.com">
+            <a href="mailto:dameabera11@gmail.com">
               <Mail className="mr-2 h-5 w-5" />
               Hire Me
             </a>
@@ -159,7 +159,7 @@ export function Hero() {
           <Button 
             size="lg" 
             variant="outline"
-            className="border-primary/20 hover:bg-primary/5 hover:border-primary/30 transition-colors"
+            className="border-primary/20 hover:bg-primary/5 hover:border-primary/30 transition-all duration-300 hover:scale-105 hover:text-primary"
             asChild
           >
             <a href="/resume.pdf" download>
