@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Badge } from './ui/badge';
 import { Code2, Server, Database, Cpu } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const skills = [
   {
@@ -51,7 +52,7 @@ const itemVariants = {
 
 const About = () => {
   return (
-    <section className="py-20 px-4 bg-background">
+    <section className="py-8 px-4 bg-background">
       <div className="max-w-7xl mx-auto">
         <motion.div 
           className="grid md:grid-cols-2 gap-12 items-center"
@@ -136,6 +137,14 @@ const About = () => {
                 development. Passionate about building real‑world software,
                 integrating AI, and collaborating on open‑source projects.
               </p>
+              <div className="flex gap-4 mt-6">
+                <a href="/resume.pdf" download>
+                  <button className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-semibold shadow hover:bg-primary/90 transition-all">Download CV</button>
+                </a>
+                <Link to="/contact">
+                  <button className="border border-primary text-primary px-6 py-2 rounded-md font-semibold hover:bg-primary/10 transition-all">Contact</button>
+                </Link>
+              </div>
             </motion.div>
 
             {/* Skills */}

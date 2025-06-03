@@ -1,8 +1,8 @@
-export default function Footer() {
-    return (
-      <footer className="text-center py-6 border-t mt-10">
-        <p>&copy; {new Date().getFullYear()} [Your Name]. All rights reserved.</p>
-      </footer>
-    );
-  }
+const Footer = () => (
+  <footer className="w-full py-6 bg-background border-t border-border text-center text-muted-foreground text-sm">
+    © {new Date().getFullYear()} Dame Abera. All rights reserved.
+  </footer>
+);
+
+export default Footer;
   

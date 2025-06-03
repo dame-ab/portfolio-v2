@@ -12,6 +12,7 @@ import { ThemeProvider } from './components/theme-provider';
 import { ModeToggle } from './components/mode-toggle';
 import ScrollToTop from './components/ScrollToTop';
 import PageTransition from './components/PageTransition';
+import NotFound from './components/NotFound';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -57,6 +58,7 @@ const AnimatedRoutes = () => {
             </div>
           </PageTransition>
         } />
+        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );

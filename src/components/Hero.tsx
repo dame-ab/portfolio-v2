@@ -113,7 +113,7 @@ export function Hero() {
             className="hover:bg-primary/10 hover:text-primary transition-colors"
             asChild
           >
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/Dame-Abera" target="_blank" rel="noopener noreferrer">
               <Github className="h-5 w-5" />
             </a>
           </Button>
@@ -123,7 +123,7 @@ export function Hero() {
             className="hover:bg-primary/10 hover:text-primary transition-colors"
             asChild
           >
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/dame-abera-815960258/" target="_blank" rel="noopener noreferrer">
               <Linkedin className="h-5 w-5" />
             </a>
           </Button>
@@ -133,7 +133,7 @@ export function Hero() {
             className="hover:bg-primary/10 hover:text-primary transition-colors"
             asChild
           >
-            <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
+            <a href="https://x.com/dame_abera12" target="_blank" rel="noopener noreferrer">
               <Twitter className="h-5 w-5" />
             </a>
           </Button>
