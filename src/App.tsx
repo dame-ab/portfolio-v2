@@ -22,7 +22,7 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={
           <PageTransition>
-            <div className="space-y-20">
+            <div className="space-y-0">
               <Hero />
               <About />
               <Projects />
@@ -30,34 +30,10 @@ const AnimatedRoutes = () => {
             </div>
           </PageTransition>
         } />
-        <Route path="/about" element={
-          <PageTransition>
-            <div className="pt-20 min-h-screen">
-              <About />
-            </div>
-          </PageTransition>
-        } />
-        <Route path="/projects" element={
-          <PageTransition>
-            <div className="pt-20 min-h-screen">
-              <Projects />
-            </div>
-          </PageTransition>
-        } />
-        <Route path="/ai" element={
-          <PageTransition>
-            <div className="pt-20 min-h-screen">
-              <Chatbot />
-            </div>
-          </PageTransition>
-        } />
-        <Route path="/contact" element={
-          <PageTransition>
-            <div className="pt-20 min-h-screen">
-              <Contact />
-            </div>
-          </PageTransition>
-        } />
+        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+        <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
+        <Route path="/ai" element={<PageTransition><Chatbot /></PageTransition>} />
+        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
@@ -68,16 +44,11 @@ const App = () => (
   <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
     <Router>
       <ScrollToTop />
-      <div className="relative flex flex-col min-h-screen bg-background text-foreground">
-        {/* Navbar */}
+      <div className="min-h-screen bg-background text-foreground">
         <Navbar />
-
-        {/* Main Content */}
-        <main className="flex-grow">
+        <main className="relative pt-10">
           <AnimatedRoutes />
         </main>
-
-        {/* Footer */}
         <Footer />
       </div>
     </Router>

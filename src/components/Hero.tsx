@@ -5,6 +5,15 @@ import { Badge } from './ui/badge';
 import { ArrowRight, Star, Github, Linkedin, Twitter, Download, Mail } from 'lucide-react';
 
 export function Hero() {
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    const filePath = encodeURI('/Dame Abera\'s  CV (10).pdf');
+    link.href = filePath;
+    link.download = 'Dame_Abera_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <section className="relative flex flex-col items-center justify-center min-h-[90vh] px-4 bg-background text-foreground overflow-hidden">
       {/* Background gradient */}
@@ -156,17 +165,13 @@ export function Hero() {
               Hire Me
             </a>
           </Button>
-          <Button 
-            size="lg" 
-            variant="outline"
-            className="border-primary/20 hover:bg-primary/5 hover:border-primary/30 transition-all duration-300 hover:scale-105 hover:text-primary"
-            asChild
-          >
-            <a href="/resume.pdf" download>
-              <Download className="mr-2 h-5 w-5" />
-              Download CV
-            </a>
-          </Button>
+          <button 
+                  onClick={handleDownload}
+                  className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-semibold shadow hover:bg-primary/90 transition-all flex items-center gap-2 hover:scale-105"
+                >
+                  <Download className="w-4 h-4" />
+                  Download CV
+                </button>
         </motion.div>
 
         {/* Scroll Indicator */}

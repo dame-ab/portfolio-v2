@@ -2,84 +2,128 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { Github, ExternalLink, Code2, Globe } from 'lucide-react';
+import { Github, ExternalLink, Code2, Globe, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const projects = [
+  
   {
-    title: "AI-Powered Chatbot",
-    description: "A sophisticated chatbot built with React and OpenAI's GPT model, featuring real-time responses and context awareness.",
-    technologies: ["React", "TypeScript", "OpenAI", "TailwindCSS"],
-    github: "https://github.com/yourusername/chatbot",
-    demo: "https://chatbot-demo.com",
-    image: "/projects/chatbot.png"
+    title: "Tewanay Flutter Shop",
+    description: "A modern e-commerce mobile application built with Flutter, featuring a clean UI, product catalog, and shopping cart functionality.",
+    technologies: ["Flutter", "Dart", "Provider"],
+    github: "https://github.com/Dame-Abera/TewanayShop-Mobile-app.git",
+    demo: "https://github.com/Dame-Abera/TewanayShop-Mobile-app.git",
+    image: "/tewanayfluttershop.png"
   },
   {
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce solution with real-time inventory management, payment processing, and admin dashboard.",
-    technologies: ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
-    github: "https://github.com/yourusername/ecommerce",
-    demo: "https://ecommerce-demo.com",
-    image: "/projects/ecommerce.png"
+    title: "Green Leaf",
+    description: "An eco-friendly platform promoting sustainable living and environmental awareness through interactive features and educational content.",
+    technologies: ["Material UI", "Jetpack Compose", "Django", "Kotlin","SQLite"],
+    github: "https://github.com/ke-kaa/GreenLeaf.git",
+    demo: "https://github.com/ke-kaa/GreenLeaf.git",
+    image: "/greenleaf.png"
   },
   {
-    title: "Portfolio Website",
-    description: "A modern, responsive portfolio website showcasing projects and skills with smooth animations and dark mode support.",
-    technologies: ["React", "TailwindCSS", "Framer Motion", "TypeScript"],
-    github: "https://github.com/yourusername/portfolio",
-    demo: "https://portfolio-demo.com",
-    image: "/projects/portfolio.png"
+    title: "E-Store Platform",
+    description: "A full-featured e-commerce platform with real-time inventory management, secure payments, and an intuitive admin dashboard.",
+    technologies: ["Next.js", "TypeScript"],
+    github: "https://github.com/Dame-Abera/tewanay-frontend-track.git",
+    demo: "https://github.com/Dame-Abera/tewanay-frontend-track.git",
+    image: "/estore.png"
+  },
+  {
+    title: "Bookmark API with NestJS",
+    description: "A robust RESTful API for managing bookmarks, built with NestJS, featuring authentication, CRUD operations, and advanced filtering.",
+    technologies: ["NestJS", "TypeScript", "PostgreSQL", "JWT","Docker"],
+    github: "https://github.com/Dame-Abera/bookmark-api-nestjs.git",
+    demo: "https://github.com/Dame-Abera/bookmark-api-nestjs.git",
+    image: "/bookmarkapiwithnestjs.png"
+  },
+  {
+    title: "Office Expense Tracker",
+    description: "A comprehensive expense tracking application for office management, featuring expense categorization, reporting, and team collaboration features.",
+    technologies: ["React", "Node.js", "Express", "Postgresql","Docker"],
+    github: "https://github.com/Dame-Abera/office-expense-tracker.git",
+    demo: "https://github.com/Dame-Abera/office-expense-tracker.git",
+    image: "/officeexpensetracker.png"
+  },
+ 
+  
+  {
+    title: "Travel Tracker",
+    description: "A travel companion app that helps users plan trips, track expenses, and share experiences with a beautiful and intuitive interface.",
+    technologies: ["React", "Redux", "Node.js", "PostgreSQL"],
+    github: "https://github.com/Dame-Abera/Family-Travel-tracker-project.git",
+    demo: "https://github.com/Dame-Abera/Family-Travel-tracker-project.git",
+    image: "/traveltracker project.png"
   }
 ];
 
 export default function Projects() {
   return (
-    <section className="py-8 px-4 bg-background">
+    <section className="py-4 px-4 bg-background">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
+          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60 dark:from-primary dark:to-primary/60">
             Featured Projects
           </h2>
-          <p className="mt-4 text-xl text-muted-foreground">
+          <p className="mt-4 text-xl text-muted-foreground dark:text-muted-foreground">
             A collection of my recent work and personal projects
           </p>
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[60vh]">
+        <div className="grid md:grid-cols-2 gap-8 min-h-[60vh]">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative bg-card rounded-xl overflow-hidden border border-border hover:border-primary/50 transition-colors"
+              className="group relative bg-white dark:bg-card rounded-xl overflow-hidden border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 dark:hover:shadow-primary/5"
             >
               {/* Project Image */}
-              <div className="aspect-video relative overflow-hidden bg-muted">
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  onError={e => { e.currentTarget.src = 'https://via.placeholder.com/400x225?text=No+Image'; }}
-                />
+              <div className="relative overflow-hidden bg-gray-50 dark:bg-muted">
+                <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-white/20 to-transparent dark:from-background/50 dark:via-background/20 dark:to-transparent z-10" />
+                <motion.div 
+                  className="relative w-full"
+                  style={{ paddingTop: '56.25%' }}
+                >
+                  <motion.img
+                    src={project.image}
+                    alt={project.title}
+                    className="absolute inset-0 w-full h-full object-contain p-4"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                    onError={e => { e.currentTarget.src = 'https://via.placeholder.com/400x225?text=No+Image'; }}
+                  />
+                </motion.div>
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 dark:group-hover:bg-primary/5 transition-colors duration-300 z-20" />
               </div>
 
               {/* Project Content */}
-              <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                <p className="text-muted-foreground mb-4">{project.description}</p>
+              <div className="p-6 bg-white dark:bg-card">
+                <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-primary transition-colors duration-300">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 dark:text-muted-foreground mb-4 line-clamp-2">
+                  {project.description}
+                </p>
 
                 {/* Technologies */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.technologies.map((tech) => (
-                    <Badge key={tech} variant="outline">
+                    <Badge 
+                      key={tech} 
+                      variant="outline"
+                      className="group-hover:border-primary/50 transition-colors duration-300 bg-gray-50 text-gray-700 dark:bg-background/50 dark:text-gray-300"
+                    >
                       {tech}
                     </Badge>
                   ))}
@@ -87,11 +131,21 @@ export default function Projects() {
 
                 {/* Links */}
                 <div className="flex gap-4">
-                  <Button variant="ghost" size="sm" className="gap-2">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="gap-2 hover:text-primary hover:bg-primary/10 transition-colors duration-300 text-gray-700 dark:text-gray-300"
+                    onClick={() => window.open(project.github, '_blank')}
+                  >
                     <Github className="h-4 w-4" />
                     Code
                   </Button>
-                  <Button variant="ghost" size="sm" className="gap-2">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="gap-2 hover:text-primary hover:bg-primary/10 transition-colors duration-300 text-gray-700 dark:text-gray-300"
+                    onClick={() => window.open(project.demo, '_blank')}
+                  >
                     <Globe className="h-4 w-4" />
                     Live Demo
                   </Button>
@@ -106,12 +160,28 @@ export default function Projects() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-12"
+          className="text-center mt-12 flex justify-center gap-4"
         >
-          <Button size="lg" variant="outline" className="gap-2">
+          <Button 
+            
+            size="lg" 
+            variant="outline" 
+            className="gap-2 hover:bg-primary/10 hover:text-primary hover:border-primary transition-colors duration-300 bg-white dark:bg-background/50 text-gray-700 dark:text-gray-300"
+          >
+            <Link to="https://github.com/Dame-Abera"></Link>
             <Code2 className="h-5 w-5" />
             View All Projects
           </Button>
+          <Link to="/contact">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="gap-2 hover:bg-primary/10 hover:text-primary hover:border-primary transition-colors duration-300 bg-white dark:bg-background/50 text-gray-700 dark:text-gray-300"
+            >
+              <Mail className="h-5 w-5" />
+              Contact Me
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </section>

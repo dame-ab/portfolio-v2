@@ -8,9 +8,9 @@
 
   <!-- Initial theme script to avoid flash of wrong theme -->
   <script>
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem('vite-ui-theme');
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    const theme = savedTheme || systemTheme;
+    const theme = savedTheme || 'dark'; // Default to dark if no saved preference
 
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
