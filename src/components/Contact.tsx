@@ -1,10 +1,62 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { Mail, Github, Linkedin, Twitter, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from '../config/emailjs';
 
 const Contact = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      if (!formRef.current) return;
+
+      const formData = new FormData(formRef.current);
+      const templateParams = {
+        from_name: formData.get('from_name'),
+        from_email: formData.get('reply_to'),
+        reply_to: formData.get('reply_to'),
+        message: formData.get('message'),
+        to_name: 'Dame Abera',
+        to_email: 'dameabera11@gmail.com'
+      };
+
+      console.log('Sending email with params:', templateParams);
+
+      await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        templateParams,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      setSubmitStatus({
+        type: 'success',
+        message: 'Message sent successfully! I will get back to you soon.'
+      });
+      formRef.current.reset();
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: 'Failed to send message. Please try again later.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="py-16 px-4 bg-background">
       <div className="max-w-4xl mx-auto">
@@ -56,38 +108,67 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="p-6 rounded-xl bg-card border border-border">
-            <h3 className="text-2xl font-semibold mb-4">Send a Message</h3>
-            <form className="space-y-4">
+          <div className="p-4 rounded-xl bg-card border border-border">
+            <h3 className="text-xl font-semibold mb-3">Send a Message</h3>
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
+                <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
                 <input
                   type="text"
                   id="name"
-                  className="w-full px-4 py-2 rounded-md border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  name="from_name"
+                  required
+                  className="w-full px-3 py-2 rounded-md border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm transition-all duration-300"
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
+                <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
                 <input
                   type="email"
                   id="email"
-                  className="w-full px-4 py-2 rounded-md border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  name="reply_to"
+                  required
+                  className="w-full px-3 py-2 rounded-md border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm transition-all duration-300"
                   placeholder="Your email"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+                <label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
                 <textarea
                   id="message"
+                  name="message"
+                  required
                   rows={4}
-                  className="w-full px-4 py-2 rounded-md border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="w-full px-3 py-2 rounded-md border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm transition-all duration-300"
                   placeholder="Your message"
                 />
               </div>
-              <Button className="w-full bg-primary hover:bg-primary/90">
-                Send Message
+              {submitStatus.type && (
+                <div className={`text-sm ${submitStatus.type === 'success' ? 'text-green-500' : 'text-red-500'}`}>
+                  {submitStatus.message}
+                </div>
+              )}
+              <Button 
+                type="submit" 
+                className="w-full bg-primary hover:bg-primary/90 py-2 text-sm relative overflow-hidden group"
+                disabled={isSubmitting}
+              >
+                <span className="relative z-10">
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </span>
+                <motion.div
+                  className="absolute inset-0 bg-white/20"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0, 0.5, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
               </Button>
             </form>
           </div>

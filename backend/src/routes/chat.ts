@@ -1,6 +1,6 @@
 // src/routes/chat.ts
 import express from 'express';
-import { askGemini } from '../services/geminiService';
+import { askGemini } from '../services/geminiService.js';
 
 const router = express.Router();
 

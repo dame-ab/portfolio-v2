@@ -1,20 +1,21 @@
 // src/components/Navbar.tsx
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState, useEffect } from 'react';
 import { ModeToggle } from './mode-toggle';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
-  { path: '/', label: 'Home' },
-  { path: '/about', label: 'About' },
-  { path: '/projects', label: 'Projects' },
-  { path: '/ai', label: 'AI Assistant' },
-  { path: '/contact', label: 'Contact' },
+  { path: '/', label: 'Home', section: 'hero' },
+  { path: '/about', label: 'About', section: 'about' },
+  { path: '/projects', label: 'Projects', section: 'projects' },
+  { path: '/ai', label: 'AI Assistant', section: 'ai' },
+  { path: '/contact', label: 'Contact', section: 'contact' },
 ];
 
 const Navbar = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -31,6 +32,25 @@ const Navbar = () => {
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
+
+  const scrollToSection = (section: string) => {
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleNavLinkClick = (path: string, section: string) => {
+    if (pathname === '/' && path === '/') {
+      scrollToSection(section);
+    } else if (pathname !== '/' && path === '/') {
+        navigate('/'); // Navigate to home first
+        // Use a timeout to ensure navigation completes before scrolling
+        setTimeout(() => scrollToSection(section), 0);
+    } else {
+      navigate(path);
+    }
+  };
 
   return (
     <motion.nav 
@@ -70,9 +90,9 @@ const Navbar = () => {
                       ? 'text-primary font-semibold' 
                       : 'text-muted-foreground hover:text-foreground'
                     }`}
-                  onClick={() => {
-                    // Scroll to top when navigating
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavLinkClick(item.path, item.section);
                   }}
                 >
                   {item.label}
@@ -127,20 +147,20 @@ const Navbar = () => {
                   transition={{ delay: index * 0.1 }}
                 >
                   <Link
-                  to={item.path}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors
-                    ${pathname === item.path
-                      ? 'bg-primary/10 text-primary font-semibold'
-                      : 'text-muted-foreground hover:bg-accent hover:text-foreground'
-                    }`}
-                  onClick={() => {
-                    setMenuOpen(false);
-                    // Scroll to top when navigating
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                >
-                  {item.label}
-                </Link>
+                    to={item.path}
+                    className={`block px-3 py-2 rounded-md text-base font-medium transition-colors
+                      ${pathname === item.path
+                        ? 'bg-primary/10 text-primary font-semibold'
+                        : 'text-muted-foreground hover:bg-accent hover:text-foreground'
+                      }`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMenuOpen(false);
+                      handleNavLinkClick(item.path, item.section);
+                    }}
+                  >
+                    {item.label}
+                  </Link>
                 </motion.div>
               ))}
             </div>

@@ -9,7 +9,6 @@ import Chatbot from './components/Chatbot';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { ThemeProvider } from './components/theme-provider';
-import { ModeToggle } from './components/mode-toggle';
 import ScrollToTop from './components/ScrollToTop';
 import PageTransition from './components/PageTransition';
 import NotFound from './components/NotFound';
@@ -23,10 +22,11 @@ const AnimatedRoutes = () => {
         <Route path="/" element={
           <PageTransition>
             <div className="space-y-0">
-              <Hero />
-              <About />
-              <Projects />
-              <Contact />
+              <div id="hero"><Hero /></div>
+              <div id="about"><About /></div>
+              <div id="projects"><Projects /></div>
+              <div id="ai"><Chatbot /></div>
+              <div id="contact"><Contact /></div>
             </div>
           </PageTransition>
         } />
@@ -46,7 +46,7 @@ const App = () => (
       <ScrollToTop />
       <div className="min-h-screen bg-background text-foreground">
         <Navbar />
-        <main className="relative pt-10">
+        <main className="relative">
           <AnimatedRoutes />
         </main>
         <Footer />

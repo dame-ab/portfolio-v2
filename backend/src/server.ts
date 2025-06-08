@@ -1,10 +1,8 @@
-import * as dotenv from 'dotenv';
-
-dotenv.config(); // This loads the variables from your .env file
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import bodyParser from 'body-parser';
-import chatRoutes from './routes/chat';
+import { json } from 'express';
+import chatRoutes from './routes/chat.js';
 
 const app = express();
 
@@ -12,10 +10,16 @@ const app = express();
 app.use(cors());
 
 // Middleware to parse JSON bodies
-app.use(bodyParser.json());
+app.use(json());
 
 // Set up routes
 app.use('/api/chat', chatRoutes);
+
+// Error handling middleware
+app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Something went wrong!' });
+});
 
 // Start the server
 const PORT = process.env.PORT || 4000;
