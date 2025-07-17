@@ -1,13 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
-import cors from 'cors';
 import { json } from 'express';
 import chatRoutes from './routes/chat.js';
-
-const app = express();
-
-// Enable CORS for all origins (you can specify more restrictions if needed)
-app.use(cors());
+import app from './app.js';
 
 // Middleware to parse JSON bodies
 app.use(json());

@@ -5,6 +5,9 @@ import { Send, Bot, User } from "lucide-react";
 
 type Msg = { role: "user" | "model"; content: string };
 
+// Get the API URL from environment variable or use the deployed backend URL
+const API_URL = import.meta.env.VITE_API_URL || 'https://portfolio-backend-7p1gecg9q-dame-aberas-projects.vercel.app/api/chat';
+
 export default function Chatbot() {
   const [msgs, setMsgs] = useState<Msg[]>([
     { role: "model", content: "Hi! I'm your AI assistant. Ask me anything about this developer." },
@@ -21,8 +24,13 @@ export default function Chatbot() {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:4000/api/chat", {
+      const res = await axios.post(API_URL, {
         messages: [...msgs, userMsg],
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true
       });
 
       const text =
@@ -32,7 +40,21 @@ export default function Chatbot() {
       setMsgs((m) => [...m, { role: "model", content: text }]);
     } catch (err: any) {
       console.error("❌ Error in send function:", err);
-      setMsgs((m) => [...m, { role: "model", content: "❌ Something went wrong." }]);
+      let errorMessage = "❌ Something went wrong.";
+      
+      if (err.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        errorMessage = `❌ Server error: ${err.response.data?.error || err.response.statusText}`;
+      } else if (err.request) {
+        // The request was made but no response was received
+        errorMessage = "❌ No response from server. Please check your connection.";
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        errorMessage = `❌ Error: ${err.message}`;
+      }
+      
+      setMsgs((m) => [...m, { role: "model", content: errorMessage }]);
     } finally {
       setLoading(false);
     }
@@ -82,7 +104,7 @@ export default function Chatbot() {
                 <div
                   className={`${
                     isUser
-                      ? "bg-primary text-gray-900"
+                      ? "bg-primary text-white"
                       : "bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white"
                   } p-4 rounded-2xl max-w-[80%] shadow-sm`}
                 >

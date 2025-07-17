@@ -6,7 +6,7 @@ import { ArrowRight, Star, Github, Linkedin, Twitter, Download, Mail } from 'luc
 export function Hero() {
   const handleDownload = () => {
     const link = document.createElement('a');
-    const filePath = encodeURI('/Dame Abera\'s  CV (10).pdf');
+    const filePath = encodeURI('/Dame_Abera_CV.pdf'); // Ensure the path is correct
     link.href = filePath;
     link.download = 'Dame_Abera_CV.pdf';
     document.body.appendChild(link);
@@ -321,7 +321,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 3.5, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute -bottom-16 left-1/2 -translate-x-1/2"
         >
           <motion.div
             animate={{ 

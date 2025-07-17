@@ -211,7 +211,7 @@ const About = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <motion.img
-                  src="/oie_PVA3ox0dYIei.png"
+                  src="/image.png"
                   alt="Profile"
                   className="w-full h-full object-cover"
                   initial={{ scale: 1.1 }}
