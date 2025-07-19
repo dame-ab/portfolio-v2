@@ -6,9 +6,9 @@ import { ArrowRight, Star, Github, Linkedin, Twitter, Download, Mail } from 'luc
 export function Hero() {
   const handleDownload = () => {
     const link = document.createElement('a');
-    const filePath = encodeURI('/Dame_Abera_CV.pdf'); // Ensure the path is correct
+    const filePath = encodeURI("/Dame-Abera's-Resume.pdf"); // Ensure the path is correct
     link.href = filePath;
-    link.download = 'Dame_Abera_CV.pdf';
+    link.download = "Dame-Abera's-Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

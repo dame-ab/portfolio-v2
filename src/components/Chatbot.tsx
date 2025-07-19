@@ -104,7 +104,7 @@ export default function Chatbot() {
                 <div
                   className={`${
                     isUser
-                      ? "bg-primary text-white"
+                      ? "bg-primary text-primary-foreground"
                       : "bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white"
                   } p-4 rounded-2xl max-w-[80%] shadow-sm`}
                 >
