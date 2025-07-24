@@ -5,7 +5,6 @@ import { Send, Bot, User } from "lucide-react";
 
 type Msg = { role: "user" | "model"; content: string };
 
-// Get the API URL from environment variable or use the deployed backend URL
 const API_URL = import.meta.env.VITE_API_URL || 'https://portfolio-backend-7p1gecg9q-dame-aberas-projects.vercel.app/api/chat';
 
 export default function Chatbot() {
@@ -41,19 +40,13 @@ export default function Chatbot() {
     } catch (err: any) {
       console.error("❌ Error in send function:", err);
       let errorMessage = "❌ Something went wrong.";
-      
       if (err.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
         errorMessage = `❌ Server error: ${err.response.data?.error || err.response.statusText}`;
       } else if (err.request) {
-        // The request was made but no response was received
         errorMessage = "❌ No response from server. Please check your connection.";
       } else {
-        // Something happened in setting up the request that triggered an Error
         errorMessage = `❌ Error: ${err.message}`;
       }
-      
       setMsgs((m) => [...m, { role: "model", content: errorMessage }]);
     } finally {
       setLoading(false);
@@ -70,20 +63,18 @@ export default function Chatbot() {
     <motion.section 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="py-8 px-4 max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700"
+      className="py-12 px-4 max-w-2xl mx-auto bg-card dark:bg-card rounded-xl shadow-2xl border border-border"
     >
-      <div className="flex items-center justify-between gap-3 mb-6">
-        <div className="flex items-center gap-3">
-          <Bot className="h-8 w-8 text-primary" />
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-            AI Assistant
-          </h2>
-        </div>
+      <div className="flex items-center gap-3 mb-8">
+        <Bot className="h-8 w-8 text-primary" />
+        <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
+          AI Assistant
+        </h2>
       </div>
 
       <div
         ref={containerRef}
-        className="bg-gray-50 dark:bg-gray-900/50 p-4 rounded-lg h-[400px] overflow-y-auto mb-4 space-y-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600"
+        className="bg-background dark:bg-background/80 p-4 rounded-lg h-[400px] overflow-y-auto mb-6 space-y-4 scrollbar-thin scrollbar-thumb-border dark:scrollbar-thumb-border"
       >
         <AnimatePresence>
           {msgs.map((m, i) => {
@@ -105,8 +96,8 @@ export default function Chatbot() {
                   className={`${
                     isUser
                       ? "bg-primary text-primary-foreground"
-                      : "bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white"
-                  } p-4 rounded-2xl max-w-[80%] shadow-sm`}
+                      : "bg-card dark:bg-card/80 text-foreground dark:text-foreground"
+                  } p-4 rounded-2xl max-w-[80%] shadow-sm border border-border`}
                 >
                   <div className="flex items-center gap-2 mb-1">
                     {isUser ? (
@@ -114,8 +105,8 @@ export default function Chatbot() {
                     ) : (
                       <Bot className="h-4 w-4" />
                     )}
-                    <span className="text-sm font-medium capitalize">
-                      {m.role}
+                    <span className="text-xs font-semibold capitalize opacity-70">
+                      {isUser ? "You" : "AI"}
                     </span>
                   </div>
                   <p className="text-sm leading-relaxed">{m.content}</p>
@@ -140,25 +131,31 @@ export default function Chatbot() {
         )}
       </div>
 
-      <div className="flex gap-3">
+      <form
+        className="flex gap-3"
+        onSubmit={e => {
+          e.preventDefault();
+          send();
+        }}
+      >
         <input
-          className="flex-1 p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+          className="flex-1 p-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-background dark:bg-background text-foreground dark:text-foreground placeholder-muted-foreground dark:placeholder-muted-foreground"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && send()}
           placeholder="Ask me anything..."
+          disabled={loading}
         />
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={send}
+          type="submit"
           disabled={loading}
-          className="bg-black dark:bg-black hover:bg-gray-900 dark:hover:bg-gray-900 text-white px-6 py-3 rounded-lg disabled:opacity-50 transition-colors flex items-center gap-2 shadow-md"
+          className="bg-primary text-primary-foreground px-6 py-3 rounded-lg disabled:opacity-50 transition-colors flex items-center gap-2 shadow-md border border-border font-semibold"
         >
           <Send className="h-5 w-5" />
-          <span className="font-medium">Send</span>
+          <span>Send</span>
         </motion.button>
-      </div>
+      </form>
     </motion.section>
   );
 }
