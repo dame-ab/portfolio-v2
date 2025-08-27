@@ -12,7 +12,7 @@ const skills = [
   {
     category: "Backend",
     icon: <Server className="w-6 h-6" />,
-    items: ["Node.js", "Python", "Express", "NestJS",  "Docker"]
+    items: ["Node.js", "Python", "Express", "NestJS",  "Docker","FastAPI"]
   },
   {
     category: "Database",
@@ -22,7 +22,7 @@ const skills = [
   {
     category: "AI/ML",
     icon: <Cpu className="w-6 h-6" />,
-    items: [ "OpenAI"]
+    items: [ "OpenAI", "LLMs", "LangChain", "Hugging Face", "FastAPI"]
   }
 ];
 
