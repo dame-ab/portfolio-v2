@@ -329,8 +329,7 @@ const About = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-              >I'm a Software Engineering student at AAU, specializing in Full-Stack development. I build scalable, secure, and containerized applications with a focus on fast delivery. 
-               
+              >I'm a Software Engineering student at AAU, specializing in Full-Stack development. I build scalable, secure, and containerized applications with a focus on fast delivery. Passionate about creating innovative solutions that make a real impact.
               </motion.p>
               <motion.div 
                 className="flex gap-4"
