@@ -16,10 +16,11 @@ router.post('/', async (req, res) => {
     const reply = await askGemini(messages);
     res.json({ reply });
   } catch (err) {
-    console.error('❌ Gemini error:', err);
+    console.error('❌ NVIDIA API error:', err);
     res.status(500).json({ 
-      error: 'Failed to get response from Gemini.', 
-      details: err instanceof Error ? err.message : 'Unknown error'
+      error: 'Failed to get response from NVIDIA API.', 
+      details: err instanceof Error ? err.message : 'Unknown error',
+      stack: err instanceof Error ? err.stack : undefined
     });
   }
 });

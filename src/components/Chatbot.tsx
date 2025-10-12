@@ -5,7 +5,7 @@ import { Send, Bot, User } from "lucide-react";
 
 type Msg = { role: "user" | "model"; content: string };
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://portfolio-backend-7p1gecg9q-dame-aberas-projects.vercel.app/api/chat';
+const API_URL = import.meta.env.VITE_API_URL || 'https://portfolio-backend-r7sq26khk-dame-aberas-projects.vercel.app';
 
 export default function Chatbot() {
   const [msgs, setMsgs] = useState<Msg[]>([
@@ -23,13 +23,12 @@ export default function Chatbot() {
     setLoading(true);
 
     try {
-      const res = await axios.post(API_URL, {
+      const res = await axios.post(`${API_URL}/api/chat`, {
         messages: [...msgs, userMsg],
       }, {
         headers: {
           'Content-Type': 'application/json',
-        },
-        withCredentials: true
+        }
       });
 
       const text =
