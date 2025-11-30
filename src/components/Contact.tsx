@@ -4,7 +4,6 @@ import { Button } from './ui/button';
 import { Mail, Github, Linkedin, Twitter, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
-import { EMAILJS_CONFIG } from '../config/emailjs';
 
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
