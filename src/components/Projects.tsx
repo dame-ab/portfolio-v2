@@ -5,7 +5,23 @@ import { Github, Code2, Globe, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const projects = [
-  
+  {
+    title: "Ride-Taxi Admin Dashboard",
+    description: "A full-featured admin system with call-center operations, fleet management, and Google Maps integration. Reduced ride assignment time from 10 to 7 minutes through workflow automation and real-time GPS updates.",
+    technologies: ["Node.js", "Express", "MongoDB", "Google Maps API", "JavaScript"],
+    github: "Private Repository",
+    demo: "Private Demo",
+    image: "/ridehailing.png"
+  }
+ ,
+ {
+  title: "eLearning Admin Platform",
+  description: "A course and student management platform with automated reporting and progress tracking. Cut content deployment time from 5 hours to 3 hours by streamlining pipelines and automating uploads.",
+  technologies: ["React", "Node.js", "PostgreSQL", "REST API"],
+  github: "Private Repository",
+  demo: "Private Demo",
+  image: "/elearningadminpanel.png"
+ },
   {
     title: "Tewanay Flutter Shop",
     description: "A modern e-commerce mobile application built with Flutter, featuring a clean UI, product catalog, and shopping cart functionality.",

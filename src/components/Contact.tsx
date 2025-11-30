@@ -35,8 +35,8 @@ const Contact = () => {
       console.log('Sending email with params:', templateParams);
 
       await emailjs.send(
-        EMAILJS_CONFIG.SERVICE_ID,
-        EMAILJS_CONFIG.TEMPLATE_ID,
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
         templateParams,
         EMAILJS_CONFIG.PUBLIC_KEY
       );
