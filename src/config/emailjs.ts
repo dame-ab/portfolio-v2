@@ -1,5 +1,4 @@
 export const EMAILJS_CONFIG = {
-  PUBLIC_KEY: "tc50mTPqd9fXXHVxX",
   TEMPLATE_PARAMS: {
     from_name: '',
     reply_to: '',

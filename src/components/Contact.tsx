@@ -38,7 +38,7 @@ const Contact = () => {
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_ID,
         templateParams,
-        EMAILJS_CONFIG.PUBLIC_KEY
+        import.meta.env.VITE_PUBLIC_KEY
       );
 
       setSubmitStatus({
